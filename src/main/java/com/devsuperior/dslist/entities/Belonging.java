@@ -15,6 +15,18 @@ public class Belonging {
 
 	private Integer position;
 
+	public Belonging() {
+	}
+
+	public Belonging(Game game, GameList list, Integer position) {
+		id.setGame(game);
+		id.setList(list);
+		this.position = position;
+	}
+
+	// Ao criar um novo objeto do tipo "Belonging", deve-se ter a referência do Game e do GameList, como pode se ver na imagem "modelo do projeto DSList.png"
+	// Por isso o construtor acima foi feito dessa forma, ja passando o Game e o GameList como parâmetros, e atribuindo diretamente eles ao objeto "id" do tipo BelongingPK
+
 	public void setGame(Game game) {
 		id.setGame(game);
 	}
