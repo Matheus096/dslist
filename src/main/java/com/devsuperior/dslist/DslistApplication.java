@@ -10,4 +10,6 @@ public class DslistApplication {
 		SpringApplication.run(DslistApplication.class, args);
 	}
 
+	// O CORS PODERIA SER CONFIGURADO AQUI TAMBEM, MAS NESSE CASO FOI CRIADO O ARQUIVO "WebConfig" SEPARADO PARA ISSO
+
 }
