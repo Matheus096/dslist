@@ -17,12 +17,12 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 		WHERE tb_belonging.list_id = :listId
 		ORDER BY tb_belonging.position
 		""")
-	List<GameMinProjection> searchByList(Long listId);
+	List<GameMinProjection> searchGamesByListId(Long listId);
 
-	// "@Query" diz ao Spring Data JPA que esse método (searchByList) não vai usar o nome do método para criar a query automaticamente
+	// "@Query" diz ao Spring Data JPA que esse método (searchGamesByListId) não vai usar o nome do método para criar a query automaticamente
     // Em vez disso, está dizendo: “Use essa query SQL que estou escrevendo aqui”
 
-	// O parâmetro ":listId" na query é um placeholder que será substituído pelo valor passado no parâmetro "listId" do método searchByList
+	// O parâmetro ":listId" na query é um placeholder que será substituído pelo valor passado no parâmetro "listId" do método searchGamesByListId
 
 
 	// Teste Inner Join:

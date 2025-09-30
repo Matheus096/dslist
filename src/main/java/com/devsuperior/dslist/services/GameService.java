@@ -48,7 +48,7 @@ public class GameService {
     // método com method reference para converter a lista de GameMinProjection em uma lista de DTOs GameMinDTO:
     @Transactional(readOnly = true)
     public List<GameMinDTO> findByListId(Long listId) {
-        List<GameMinProjection> listGames = gameRepository.searchByList(listId);
+        List<GameMinProjection> listGames = gameRepository.searchGamesByListId(listId);
         return listGames.stream().map(GameMinDTO::new).toList();
     }
 }
