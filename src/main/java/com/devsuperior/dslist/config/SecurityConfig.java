@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 import com.devsuperior.dslist.security.CustomUserDetailsService;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -22,11 +24,24 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/auth/**").permitAll() // libera registro/login
-                        .anyRequest().authenticated())
-                .formLogin(withDefaults()); // ou .httpBasic() para teste rápido
+        http
+            // Desativa CSRF só pra facilitar teste local
+            .csrf(csrf -> csrf.disable())
+            // Libera o uso de frames (necessário pro H2 Console funcionar)
+            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+            // Define as rotas públicas e privadas
+            .authorizeHttpRequests(requests -> requests
+                // Libera acesso total ao H2 console
+                .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+                // Libera login e registro
+                .requestMatchers("/auth/**").permitAll()
+                // Exige autenticação no restante
+                .anyRequest().authenticated()
+            )
+            // Desativa o formulário padrão
+            .formLogin(form -> form.disable())
+            // Desativa o popup básico
+            .httpBasic(basic -> basic.disable());
 
         return http.build();
     }

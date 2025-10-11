@@ -37,3 +37,5 @@ INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 7, 1);
 INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 8, 2);
 INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 9, 3);
 INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 10, 4);
+
+INSERT INTO tb_user (username, password, role) VALUES ('Matheus', '$2a$12$yEbCxQsFUyXIWaot5lqYd.WSZEYovWdeYNOLqiOzKIgTylXiuh1Zq', 'ADMIN'); -- senha: 123456, mas criptografada --
