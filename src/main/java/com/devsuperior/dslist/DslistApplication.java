@@ -11,5 +11,7 @@ public class DslistApplication {
 	}
 
 	// O CORS PODERIA SER CONFIGURADO AQUI TAMBEM, MAS NESSE CASO FOI CRIADO O ARQUIVO "WebConfig" SEPARADO PARA ISSO
+	
+	// E atualmente o CORS está sendo configurado no arquivo "SecurityConfig" pelo metodo "corsConfigurationSource()"
 
 }
