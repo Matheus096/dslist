@@ -30,13 +30,8 @@ public class GameListController {
         return gameListService.findAll();
     }
 
-    // O método findAll() que criei no "Service" já retorna uma lista de GameListDTO
-
-
     @GetMapping(value = "/{listId}/games")
     public List<GameMinDTO> findByListId(@PathVariable Long listId) {
         return gameService.findByListId(listId);
     }
-
-    // O método findByListId() que criei no "Service" já retorna uma lista de GameMinDTO
 }
