@@ -24,4 +24,8 @@ public class BelongingPK {
     @ManyToOne
     @JoinColumn(name = "list_id")
     private GameList list;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id") // adiciona o usuário no relacionamento
+    private User user;
 }
