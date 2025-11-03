@@ -28,8 +28,8 @@ public class JwtFilter extends OncePerRequestFilter {
         
         String path = request.getServletPath();
 
-        // 🚫 Ignora o filtro nas rotas públicas (login, registro e h2-console)
-        if (path.contains("/auth") || path.contains("/h2-console")) {
+        // 🚫 Ignora o filtro nas rotas públicas (login, registro, h2-console e users para o postman)
+        if (path.contains("/auth") || path.contains("/h2-console") || path.contains("/users")) {
             filterChain.doFilter(request, response);
             return;
         }
