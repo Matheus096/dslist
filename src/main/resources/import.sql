@@ -1,6 +1,9 @@
 INSERT INTO tb_game_list (name) VALUES ('Aventura e RPG');
 INSERT INTO tb_game_list (name) VALUES ('Jogos de plataforma');
 
+-- Adicionando a lista "Todos" --
+INSERT INTO tb_game_list (name) VALUES ('Todos');
+
 INSERT INTO tb_game (title, score, game_year, genre, platforms, img_url, short_description, long_description) VALUES ('Mass Effect Trilogy', 4.8, 2012, 'Role-playing (RPG), Shooter', 'XBox, Playstation, PC', 'https://raw.githubusercontent.com/devsuperior/java-spring-dslist/main/resources/1.png', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit esse officiis corrupti unde repellat non quibusdam! Id nihil itaque ipsum!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dolorum illum placeat eligendi, quis maiores veniam. Incidunt dolorum, nisi deleniti dicta odit voluptatem nam provident temporibus reprehenderit blanditiis consectetur tenetur. Dignissimos blanditiis quod corporis iste, aliquid perspiciatis architecto quasi tempore ipsam voluptates ea ad distinctio, sapiente qui, amet quidem culpa.');
 INSERT INTO tb_game (title, score, game_year, genre, platforms, img_url, short_description, long_description) VALUES ('Red Dead Redemption 2', 4.7, 2018, 'Role-playing (RPG), Adventure', 'XBox, Playstation, PC', 'https://raw.githubusercontent.com/devsuperior/java-spring-dslist/main/resources/2.png', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit esse officiis corrupti unde repellat non quibusdam! Id nihil itaque ipsum!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dolorum illum placeat eligendi, quis maiores veniam. Incidunt dolorum, nisi deleniti dicta odit voluptatem nam provident temporibus reprehenderit blanditiis consectetur tenetur. Dignissimos blanditiis quod corporis iste, aliquid perspiciatis architecto quasi tempore ipsam voluptates ea ad distinctio, sapiente qui, amet quidem culpa.');
 INSERT INTO tb_game (title, score, game_year, genre, platforms, img_url, short_description, long_description) VALUES ('The Witcher 3: Wild Hunt', 4.7, 2014, 'Role-playing (RPG), Adventure', 'XBox, Playstation, PC', 'https://raw.githubusercontent.com/devsuperior/java-spring-dslist/main/resources/3.png', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit esse officiis corrupti unde repellat non quibusdam! Id nihil itaque ipsum!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dolorum illum placeat eligendi, quis maiores veniam. Incidunt dolorum, nisi deleniti dicta odit voluptatem nam provident temporibus reprehenderit blanditiis consectetur tenetur. Dignissimos blanditiis quod corporis iste, aliquid perspiciatis architecto quasi tempore ipsam voluptates ea ad distinctio, sapiente qui, amet quidem culpa.');
@@ -22,20 +25,33 @@ INSERT INTO tb_game (title, score, game_year, genre, platforms, img_url, short_d
 -- ou seja, o jogo 'The Legend of Zelda' não deve aparecer em nenhuma lista após a consulta, pois ele não foi adicionado a nenhuma lista na tabela de pertencimento (belonging) --
 
 
+-- Inserindo o usuario 'Matheus' para testes: --
+INSERT INTO tb_user (username, password, role) VALUES ('Matheus', '$2a$12$yEbCxQsFUyXIWaot5lqYd.WSZEYovWdeYNOLqiOzKIgTylXiuh1Zq', 'ADMIN'); -- senha: 123456, mas criptografada --
+
 -- Inserindo dados na tabela de pertencimento (belonging): -- 
 
--- Os 5 jogos foram adicionados à lista de 'Aventura e RPG' --
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (1, 1, 0);
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (1, 2, 1);
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (1, 3, 2);
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (1, 4, 3);
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (1, 5, 4);
+-- Os 5 jogos foram adicionados à lista de 'Aventura e RPG' do usuario 'Matheus' --
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (1, 1, 1, 0);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (1, 2, 1, 1);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (1, 3, 1, 2);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (1, 4, 1, 3);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (1, 5, 1, 4);
 
--- Os outros 5 jogos foram adicionados à lista de 'Jogos de plataforma' --
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 6, 0);
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 7, 1);
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 8, 2);
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 9, 3);
-INSERT INTO tb_belonging (list_id, game_id, position) VALUES (2, 10, 4);
+-- Os outros 5 jogos foram adicionados à lista de 'Jogos de plataforma' do usuario 'Matheus'--
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (2, 6, 1, 0);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (2, 7, 1, 1);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (2, 8, 1, 2);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (2, 9, 1, 3);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (2, 10, 1, 4);
 
-INSERT INTO tb_user (username, password, role) VALUES ('Matheus', '$2a$12$yEbCxQsFUyXIWaot5lqYd.WSZEYovWdeYNOLqiOzKIgTylXiuh1Zq', 'ADMIN'); -- senha: 123456, mas criptografada --
+-- Adiciona todos os jogos existentes à lista "Todos" do usuario 'Matheus' --
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 1, 1, 0);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 2, 1, 1);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 3, 1, 2);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 4, 1, 3);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 5, 1, 4);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 6, 1, 5);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 7, 1, 6);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 8, 1, 7);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 9, 1, 8);
+INSERT INTO tb_belonging (list_id, game_id, user_id, position) VALUES (3, 10, 1, 9);
