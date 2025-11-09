@@ -47,6 +47,8 @@ public class SecurityConfig {
                 .requestMatchers("/auth/**").permitAll()
                 //libera rota de teste para acessar users pelo postman
                 .requestMatchers("/users/**").permitAll()
+                //libera rota de teste para acessar games pelo postman
+                .requestMatchers("/games/**").permitAll()
                 // Exige autenticação no restante
                 .anyRequest().authenticated()
             )

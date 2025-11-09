@@ -2,6 +2,7 @@ package com.devsuperior.dslist.services;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +51,30 @@ public class GameService {
     public List<GameMinDTO> findByListId(Long listId) {
         List<GameMinProjection> listGames = gameRepository.searchGamesByListId(listId);
         return listGames.stream().map(GameMinDTO::new).toList();
+    }
+
+    public GameDTO create(GameDTO gameDTO) {
+        Game entity = new Game();
+        copyDtoToEntity(gameDTO, entity);
+        entity = gameRepository.save(entity);
+        return new GameDTO(entity);
+    }
+
+    public void delete(Long id) {
+        gameRepository.deleteById(id);
+    }
+
+    public GameDTO update(Long id, GameDTO updatedGame) {
+        Game entity = gameRepository.findById(id).orElseThrow(() -> new RuntimeException("Game not found"));
+        copyDtoToEntity(updatedGame, entity);
+        entity = gameRepository.save(entity);
+        return new GameDTO(entity);
+    }
+
+    // No Spring o repository faz operações apenas com a entidade em si, não com DTOs, então como o front envia um DTO,
+    // precisamos converter esse DTO em uma entidade para que o repository consiga fazer as operações de CRUD etc
+    // Esse método abaixo faz essa conversão de DTO para entidade copiando todos os atributos do DTO para a entidade tirando o id:
+    private void copyDtoToEntity(GameDTO dto, Game entity) {
+        BeanUtils.copyProperties(dto, entity, "id"); // ignora o id ao copiar as propriedades, se o id for copiado, pode gerar conflito ao tentar criar uma nova entidade com um id que já existe
     }
 }
