@@ -311,6 +311,3 @@ export const environment = {
 
 **Matheus096** - Projeto melhorado e atualizado por mim após o intensivão de Spring Boot do professor Nélio
 
----
-
-**Última atualização**: 13 de novembro de 2025
