@@ -11,7 +11,6 @@ Uma aplicação backend desenvolvida com **Spring Boot 3.4.5** e **Java 21** par
 - [Endpoints Principais](#endpoints-principais)
 - [Autenticação e Segurança](#autenticação-e-segurança)
 - [Estrutura de Dados](#estrutura-de-dados)
-- [Exemplo de Uso (com cURL)](#exemplo-de-uso-com-curl)
 - [Testes](#testes)
 - [Boas Práticas Implementadas](#boas-práticas-implementadas)
 - [Troubleshooting](#troubleshooting)
