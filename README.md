@@ -4,7 +4,7 @@ Uma aplicação backend desenvolvida com **Spring Boot 3.4.5** e **Java 21** par
 
 ## 📋 Visão Geral
 
-O **DSList** é um projeto educacional que demonstra boas práticas de desenvolvimento de APIs REST usando o ecossistema Spring. A aplicação permite:
+O **DSList** é um projeto que demonstra boas práticas de desenvolvimento de APIs REST usando o ecossistema Spring. A aplicação permite:
 
 - ✅ Listar jogos e criar listas de jogos personalizadas
 - ✅ Autenticação segura de usuários com **Spring Security** e **JWT**
