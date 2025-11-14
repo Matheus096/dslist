@@ -266,14 +266,14 @@ mvn test -Dtest=DslistApplicationTests
 
 ## 📝 Boas Práticas Implementadas
 
-✅ **Injeção de Dependência**: Uso de `@Autowired` e construtores
-✅ **DTOs**: Separação entre modelo de dados (Entity) e dados transferidos
-✅ **Camadas**: Separação clara entre controllers, services e repositories
-✅ **Tratamento de Erros**: Exceptions customizadas e tratamento global
-✅ **Queries Otimizadas**: Uso de `@Query` nativa com JPA para joins complexos
-✅ **Segurança**: Spring Security, JWT e criptografia BCrypt
-✅ **CORS**: Configuração para múltiplas origens
-✅ **Perfis de Aplicação**: test (H2), dev e prod (PostgreSQL)
+- ✅ Injeção de Dependência: Uso de `@Autowired` e construtores
+- ✅ DTOs: Separação entre modelo de dados (Entity) e dados transferidos
+- ✅ Camadas: Separação clara entre controllers, services e repositories
+- ✅ Tratamento de Erros: Exceptions customizadas e tratamento global
+- ✅ Queries Otimizadas: Uso de `@Query` nativa com JPA para joins complexos
+- ✅ Segurança: Spring Security, JWT e criptografia BCrypt
+- ✅ CORS: Configuração para múltiplas origens
+- ✅ Perfis de Aplicação: test (H2), dev e prod (PostgreSQL)
 
 ---
 
