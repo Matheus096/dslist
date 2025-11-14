@@ -21,7 +21,7 @@ Uma aplicação backend desenvolvida com **Spring Boot 3.4.5** e **Java 21** par
 
 ## 📋 Visão Geral
 
-O **DSList** é um projeto educacional que demonstra boas práticas de desenvolvimento de APIs REST usando o ecossistema Spring. A aplicação permite:
+O **DSList** é um projeto que demonstra boas práticas de desenvolvimento de APIs REST usando o ecossistema Spring. A aplicação permite:
 
 - ✅ Listar jogos e criar listas de jogos personalizadas
 - ✅ Autenticação segura de usuários com **Spring Security** e **JWT**
@@ -283,14 +283,14 @@ mvn test -Dtest=DslistApplicationTests
 
 ## 📝 Boas Práticas Implementadas
 
-✅ **Injeção de Dependência**: Uso de `@Autowired` e construtores
-✅ **DTOs**: Separação entre modelo de dados (Entity) e dados transferidos
-✅ **Camadas**: Separação clara entre controllers, services e repositories
-✅ **Tratamento de Erros**: Exceptions customizadas e tratamento global
-✅ **Queries Otimizadas**: Uso de `@Query` nativa com JPA para joins complexos
-✅ **Segurança**: Spring Security, JWT e criptografia BCrypt
-✅ **CORS**: Configuração para múltiplas origens
-✅ **Perfis de Aplicação**: test (H2), dev e prod (PostgreSQL)
+- ✅ Injeção de Dependência: Uso de `@Autowired` e construtores
+- ✅ DTOs: Separação entre modelo de dados (Entity) e dados transferidos
+- ✅ Camadas: Separação clara entre controllers, services e repositories
+- ✅ Tratamento de Erros: Exceptions customizadas e tratamento global
+- ✅ Queries Otimizadas: Uso de `@Query` nativa com JPA para joins complexos
+- ✅ Segurança: Spring Security, JWT e criptografia BCrypt
+- ✅ CORS: Configuração para múltiplas origens
+- ✅ Perfis de Aplicação: test (H2), dev e prod (PostgreSQL)
 
 ---
 
