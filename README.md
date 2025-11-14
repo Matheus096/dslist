@@ -5,16 +5,16 @@ Uma aplicação backend desenvolvida com **Spring Boot 3.4.5** e **Java 21** par
 ## ✨ Sumário
 
 - [Visão geral](#visao-geral)
-- [Arquitetura do Projeto](#arquitetura-do-projeto)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Como Executar](#como-executar)
-- [Endpoints Principais](#endpoints-principais)
-- [Autenticação e Segurança](#autenticação-e-segurança)
-- [Estrutura de Dados](#estrutura-de-dados)
-- [Testes](#testes)
-- [Boas Práticas Implementadas](#boas-práticas-implementadas)
-- [Troubleshooting](#troubleshooting)
-- [Estrutura do Frontend (Angular)](#estrutura-do-frontend-angular)
+- [Arquitetura do Projeto](#-arquitetura-do-projeto)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Como Executar](#-como-executar)
+- [Endpoints Principais](#-endpoints-principais)
+- [Autenticação e Segurança](#-autenticação-e-segurança)
+- [Estrutura de Dados](#-estrutura-de-dados)
+- [Testes](#-testes)
+- [Boas Práticas Implementadas](#-boas-práticas-implementadas)
+- [Troubleshooting](#-troubleshooting)
+- [Estrutura do Frontend (Angular)](#-estrutura-do-frontend-angular)
 
 ---
 
