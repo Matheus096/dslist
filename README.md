@@ -4,7 +4,7 @@ Uma aplicação backend desenvolvida com **Spring Boot 3.4.5** e **Java 21** par
 
 ## ✨ Sumário
 
-- [Visão geral](#visão-geral)
+- [Visão geral](#visao-geral)
 - [Arquitetura do Projeto](#arquitetura-do-projeto)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Como Executar](#como-executar)
