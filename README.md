@@ -310,3 +310,7 @@ export const environment = {
 ## 👨‍💻 Autor
 
 **Matheus096** - Projeto melhorado e atualizado por mim após o intensivão de Spring Boot do professor Nélio
+
+---
+
+**Desenvolvido usando Spring 3.4 e Java
