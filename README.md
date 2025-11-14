@@ -231,40 +231,6 @@ cors.origins=http://localhost:5173,http://localhost:3000,http://seu-dominio.com
 
 ---
 
-## 🔍 Exemplo de Uso (com cURL)
-
-### 1. Registrar um usuário
-
-```bash
-curl -X POST http://localhost:8080/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"username":"joao","password":"senha123","email":"joao@example.com"}'
-```
-
-### 2. Fazer login
-
-```bash
-curl -X POST http://localhost:8080/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"joao","password":"senha123"}'
-```
-
-Retorna:
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiJ9..."
-}
-```
-
-### 3. Listar jogos (com autenticação)
-
-```bash
-curl -X GET http://localhost:8080/games \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9..."
-```
-
----
-
 ## 🧪 Testes
 
 Execute os testes com Maven:
