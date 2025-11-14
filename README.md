@@ -2,6 +2,23 @@
 
 Uma aplicação backend desenvolvida com **Spring Boot 3.4.5** e **Java 21** para gerenciamento de uma lista de jogos, com autenticação segura via JWT e integração com banco de dados.
 
+## ✨ Sumário
+
+- [Visão geral](#visão-geral)
+- [Arquitetura do Projeto](#arquitetura-do-projeto)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Como Executar](#como-executar)
+- [Endpoints Principais](#endpoints-principais)
+- [Autenticação e Segurança](#autenticação-e-segurança)
+- [Estrutura de Dados](#estrutura-de-dados)
+- [Exemplo de Uso (com cURL)](#exemplo-de-uso-com-curl)
+- [Testes](#testes)
+- [Boas Práticas Implementadas](#boas-práticas-implementadas)
+- [Troubleshooting](#🐛-troubleshooting)
+- [Estrutura do Frontend (Angular)](#estrutura-do-frontend-angular)
+
+---
+
 ## 📋 Visão Geral
 
 O **DSList** é um projeto educacional que demonstra boas práticas de desenvolvimento de APIs REST usando o ecossistema Spring. A aplicação permite:
