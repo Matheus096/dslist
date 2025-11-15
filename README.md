@@ -183,7 +183,7 @@ A aplicação está configurada para aceitar requisições de:
 - `http://localhost:5173` (Vite)
 - `http://localhost:3000` (React/Node)
 
-Configure outras origens no arquivo `application.properties`:
+Configure outras origens no arquivo `application.properties` ou na classe `SecurityConfig`:
 
 ```properties
 cors.origins=http://localhost:5173,http://localhost:3000,http://seu-dominio.com
