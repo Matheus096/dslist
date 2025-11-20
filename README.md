@@ -4,18 +4,17 @@ Uma aplicação backend desenvolvida com **Spring Boot 3.4.5** e **Java 21** par
 
 ## ✨ Sumário
 
-- [Visão geral](#visão-geral)
-- [Arquitetura do Projeto](#arquitetura-do-projeto)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Como Executar](#como-executar)
-- [Endpoints Principais](#endpoints-principais)
-- [Autenticação e Segurança](#autenticação-e-segurança)
-- [Estrutura de Dados](#estrutura-de-dados)
-- [Exemplo de Uso (com cURL)](#exemplo-de-uso-com-curl)
-- [Testes](#testes)
-- [Boas Práticas Implementadas](#boas-práticas-implementadas)
-- [Troubleshooting](#🐛-troubleshooting)
-- [Estrutura do Frontend (Angular)](#estrutura-do-frontend-angular)
+- [Visão geral](#visao-geral)
+- [Arquitetura do Projeto](#-arquitetura-do-projeto)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Como Executar](#-como-executar)
+- [Endpoints Principais](#-endpoints-principais)
+- [Autenticação e Segurança](#-autenticação-e-segurança)
+- [Estrutura de Dados](#-estrutura-de-dados)
+- [Testes](#-testes)
+- [Boas Práticas Implementadas](#-boas-práticas-implementadas)
+- [Troubleshooting](#-troubleshooting)
+- [Estrutura do Frontend (Angular)](#-estrutura-do-frontend-angular)
 
 ---
 
@@ -184,7 +183,7 @@ A aplicação está configurada para aceitar requisições de:
 - `http://localhost:5173` (Vite)
 - `http://localhost:3000` (React/Node)
 
-Configure outras origens no arquivo `application.properties`:
+Configure outras origens no arquivo `application.properties` ou na classe `SecurityConfig`:
 
 ```properties
 cors.origins=http://localhost:5173,http://localhost:3000,http://seu-dominio.com
@@ -227,40 +226,6 @@ cors.origins=http://localhost:5173,http://localhost:3000,http://seu-dominio.com
 - username: String (UNIQUE)
 - password: String (criptografado)
 - email: String
-```
-
----
-
-## 🔍 Exemplo de Uso (com cURL)
-
-### 1. Registrar um usuário
-
-```bash
-curl -X POST http://localhost:8080/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"username":"joao","password":"senha123","email":"joao@example.com"}'
-```
-
-### 2. Fazer login
-
-```bash
-curl -X POST http://localhost:8080/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"joao","password":"senha123"}'
-```
-
-Retorna:
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiJ9..."
-}
-```
-
-### 3. Listar jogos (com autenticação)
-
-```bash
-curl -X GET http://localhost:8080/games \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9..."
 ```
 
 ---
@@ -344,8 +309,8 @@ export const environment = {
 
 ## 👨‍💻 Autor
 
-**Matheus096** - Projeto melhorado e atualizado por mim após o intensivão de Spring Boot do professor Nélio
+**Matheus096** - [GitHub Profile](https://github.com/Matheus096)
 
 ---
 
-**Última atualização**: 13 de novembro de 2025
+**Desenvolvido usando Spring 3.4 e Java**
