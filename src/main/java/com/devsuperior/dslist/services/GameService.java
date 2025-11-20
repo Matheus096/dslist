@@ -11,6 +11,7 @@ import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.projections.GameMinProjection;
+import com.devsuperior.dslist.repositories.BelongingRepository;
 import com.devsuperior.dslist.repositories.GameRepository;
 
 @Service
@@ -18,6 +19,9 @@ public class GameService {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private BelongingRepository belongingRepository;
 
     @Transactional(readOnly = true)
     public GameDTO findById(Long gameId) {
@@ -53,6 +57,7 @@ public class GameService {
         return listGames.stream().map(GameMinDTO::new).toList();
     }
 
+    @Transactional
     public GameDTO create(GameDTO gameDTO) {
         Game entity = new Game();
         copyDtoToEntity(gameDTO, entity);
@@ -60,10 +65,13 @@ public class GameService {
         return new GameDTO(entity);
     }
 
+    @Transactional
     public void delete(Long id) {
+        belongingRepository.deleteBelongingsByGameId(id);
         gameRepository.deleteById(id);
     }
 
+    @Transactional
     public GameDTO update(Long id, GameDTO updatedGame) {
         Game entity = gameRepository.findById(id).orElseThrow(() -> new RuntimeException("Game not found"));
         copyDtoToEntity(updatedGame, entity);

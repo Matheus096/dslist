@@ -3,8 +3,10 @@ package com.devsuperior.dslist.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dslist.entities.Belonging;
 import com.devsuperior.dslist.entities.BelongingPK;
@@ -15,4 +17,8 @@ public interface BelongingRepository extends JpaRepository<Belonging, BelongingP
     @Query("SELECT b.id.game FROM Belonging b WHERE b.id.list.id = :listId AND b.id.user.id = :userId ORDER BY b.position ASC")
     List<Game> findGamesByUserAndList(@Param("userId") Long userId, @Param("listId") Long listId);
 
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Belonging b WHERE b.id.game.id = :gameId")
+    void deleteBelongingsByGameId(Long gameId);
 }
