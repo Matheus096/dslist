@@ -45,8 +45,8 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
                 // Libera login e registro
                 .requestMatchers("/auth/**").permitAll()
-                //libera rota de teste para acessar users pelo postman
-                .requestMatchers("/users/**").permitAll()
+                //libera rota de teste para acessar user pelo postman
+                .requestMatchers("/user/**").permitAll()
                 //libera rota de teste para acessar games pelo postman
                 .requestMatchers("/games/**").permitAll()
                 // Exige autenticação no restante
