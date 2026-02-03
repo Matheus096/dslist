@@ -57,6 +57,12 @@ public class GameService {
         return listGames.stream().map(GameMinDTO::new).toList();
     }
 
+    @Transactional(readOnly = true)
+    public GameDTO findByTitle(String title) {
+        Game game = gameRepository.findByTitle(title).orElseThrow(() -> new RuntimeException("Jogo não encontrado"));
+        return new GameDTO(game);
+    }
+
     @Transactional
     public GameDTO create(GameDTO gameDTO) {
         Game entity = new Game();
@@ -73,7 +79,7 @@ public class GameService {
 
     @Transactional
     public GameDTO update(Long id, GameDTO updatedGame) {
-        Game entity = gameRepository.findById(id).orElseThrow(() -> new RuntimeException("Game not found"));
+        Game entity = gameRepository.findById(id).orElseThrow(() -> new RuntimeException("Jogo não encontrado"));
         copyDtoToEntity(updatedGame, entity);
         entity = gameRepository.save(entity);
         return new GameDTO(entity);

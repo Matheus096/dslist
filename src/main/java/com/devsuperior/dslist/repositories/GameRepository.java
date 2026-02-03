@@ -2,10 +2,12 @@ package com.devsuperior.dslist.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.projections.GameMinProjection;
 import java.util.List;
+import java.util.Optional;
 
 public interface GameRepository extends JpaRepository<Game, Long> {
 
@@ -17,7 +19,9 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 		WHERE tb_belonging.list_id = :listId
 		ORDER BY tb_belonging.position
 		""")
-	List<GameMinProjection> searchGamesByListId(Long listId);
+	List<GameMinProjection> searchGamesByListId(@Param("listId") Long listId);
+
+	Optional<Game> findByTitle(String title);
 
 	// "@Query" diz ao Spring Data JPA que esse método (searchGamesByListId) não vai usar o nome do método para criar a query automaticamente
     // Em vez disso, está dizendo: “Use essa query SQL que estou escrevendo aqui”
