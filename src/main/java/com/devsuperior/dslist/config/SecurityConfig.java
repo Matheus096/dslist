@@ -43,10 +43,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(requests -> requests
                 // Libera acesso total ao H2 console
                 .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-                // Libera login e registro
+                // Libera login e registro (auth)
                 .requestMatchers("/auth/**").permitAll()
-                //libera rota de teste para acessar user pelo postman
-                .requestMatchers("/user/**").permitAll()
                 //libera rota de teste para acessar games pelo postman
                 .requestMatchers("/games/**").permitAll()
                 // Exige autenticação no restante
