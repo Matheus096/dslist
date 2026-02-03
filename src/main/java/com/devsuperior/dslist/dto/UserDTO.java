@@ -13,10 +13,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserDTO {
 
+    private Long id;
     private String username;
     private String password;
 
     public UserDTO(User usuario) {
+        this.id = usuario.getId();
         this.username = usuario.getUsername();
         this.password = usuario.getPassword();
     }
