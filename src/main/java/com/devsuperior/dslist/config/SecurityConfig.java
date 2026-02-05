@@ -46,7 +46,7 @@ public class SecurityConfig {
                 // Libera login e registro (auth)
                 .requestMatchers("/auth/**").permitAll()
                 //libera rota de teste para acessar games pelo postman
-                .requestMatchers("/games/**").permitAll()
+                .requestMatchers("/games", "/games/**").permitAll()
                 // Exige autenticação no restante
                 .anyRequest().authenticated()
             )
