@@ -21,7 +21,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 		""")
 	List<GameMinProjection> searchGamesByListId(@Param("listId") Long listId);
 
-	Optional<Game> findByTitle(String title);
+	List<Game> findByTitleContainingIgnoreCase(String title);
 
 	// "@Query" diz ao Spring Data JPA que esse método (searchGamesByListId) não vai usar o nome do método para criar a query automaticamente
     // Em vez disso, está dizendo: “Use essa query SQL que estou escrevendo aqui”

@@ -34,8 +34,9 @@ public class GameController {
     }
 
     @GetMapping(params = "title")
-    public GameDTO findByTitle(@RequestParam String title) {
-        return gameService.findByTitle(title);
+    public ResponseEntity<List<GameDTO>> findByTitle(@RequestParam String title) {
+        List<GameDTO> list = gameService.findByTitle(title);
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping

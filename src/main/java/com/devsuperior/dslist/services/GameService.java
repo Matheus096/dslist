@@ -1,6 +1,7 @@
 package com.devsuperior.dslist.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,9 +59,13 @@ public class GameService {
     }
 
     @Transactional(readOnly = true)
-    public GameDTO findByTitle(String title) {
-        Game game = gameRepository.findByTitle(title).orElseThrow(() -> new RuntimeException("Jogo não encontrado"));
-        return new GameDTO(game);
+    public List<GameDTO> findByTitle(String title) {
+        List<Game> games = gameRepository.findByTitleContainingIgnoreCase(title);
+
+        // Transforma a lista de Game em uma lista de GameDTO
+        return games.stream()
+                .map(GameDTO::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional
