@@ -4,7 +4,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +11,7 @@ import com.devsuperior.dslist.dto.AuthResponseUserDTO;
 import com.devsuperior.dslist.dto.UserDTO;
 import com.devsuperior.dslist.entities.User;
 import com.devsuperior.dslist.repositories.UserRepository;
+import com.devsuperior.dslist.security.CustomUserDetails;
 import com.devsuperior.dslist.security.jwt.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -42,7 +42,7 @@ public class AuthUserService {
             )
         );
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         String token = jwtUtil.generateToken(userDetails);
 
         // Retorna o DTO de resposta com token e username
