@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,13 @@ public class UserController {
     public ResponseEntity<List<GameMinDTO>> getGamesForUserList(@PathVariable Long userId, @PathVariable Long listId) {
         List<GameMinDTO> games = userService.getGamesByUserAndList(userId, listId);
         return ResponseEntity.ok(games);
+    }
+
+    @PostMapping("/games_store/{gameId}/buy")
+    public ResponseEntity<Void> buyGame(@PathVariable Long gameId) {
+        userService.buyGame(gameId);
+        
+        return ResponseEntity.ok().build();
     }
 
 }

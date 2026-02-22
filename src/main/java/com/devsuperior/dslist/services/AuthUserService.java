@@ -49,9 +49,13 @@ public class AuthUserService {
         return new AuthResponseUserDTO(token, userDetails.getUsername());
     }
 
-    // Método para pegar o usuário atual logado
-    public UserDTO getCurrentUser() {
+
+    // Método para pegar o usuário atual logado (entidade)
+    public User getCurrentUserEntity() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("AUTH: " + authentication);
+        System.out.println("NAME: " + authentication.getName());
+        System.out.println("IS AUTHENTICATED: " + authentication.isAuthenticated());
 
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new RuntimeException("Usuário não autenticado");
@@ -59,7 +63,12 @@ public class AuthUserService {
 
         String username = authentication.getName();
 
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
+
+    // Método para pegar o usuário atual logado (DTO)
+    public UserDTO getCurrentUserDTO() {
+        User user = getCurrentUserEntity();
         return new UserDTO(user);
     }
 }

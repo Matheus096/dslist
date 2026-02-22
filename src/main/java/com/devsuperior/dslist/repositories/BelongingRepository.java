@@ -21,4 +21,7 @@ public interface BelongingRepository extends JpaRepository<Belonging, BelongingP
     @Transactional
     @Query("DELETE FROM Belonging b WHERE b.id.game.id = :gameId")
     void deleteBelongingsByGameId(Long gameId);
+
+    @Query("SELECT COUNT(b) FROM Belonging b WHERE b.id.user.id = :userId AND b.id.list.id = :listId")
+    Long countByUserAndList(@Param("userId") Long userId, @Param("listId") Long listId);
 }
