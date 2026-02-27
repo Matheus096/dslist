@@ -1,5 +1,7 @@
 package com.devsuperior.dslist.dto;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.BeanUtils;
 
 import com.devsuperior.dslist.entities.Game;
@@ -9,6 +11,7 @@ public class GameDTO {
     private Long id;
     private String title;
     private Integer year;
+    private BigDecimal price;
     private String genre;
     private String platforms;
     private Double score;
@@ -26,6 +29,7 @@ public class GameDTO {
         this.id = game.getId();
         this.title = game.getTitle();
         this.year = game.getYear();
+        this.price = game.getPrice();
         this.genre = game.getGenre();
         this.platforms = game.getPlatforms();
         this.score = game.getScore();
@@ -66,6 +70,14 @@ public class GameDTO {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getGenre() {
