@@ -35,28 +35,43 @@ public class UserService {
 
     @Transactional
     public void buyGame(Long gameId) {
-        Long listId = 3L; // lista fixa "Todos"
-
         User user = authUserService.getCurrentUserEntity();
         Game game = gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game não encontrado"));
-        GameList list = gameListRepository.findById(listId).orElseThrow(() -> new RuntimeException("Lista não encontrada"));
 
-        // Verifica se o user já possui o jogo na lista "Todos"
-        BelongingPK pk = new BelongingPK(game, list, user);
+        // 1. Lista fixa padrão "Todos" (ID 3) (sempre que comprar um jogo, ele vai para essa lista de todo jeito)
+        saveToSpecificList(user, game, 3L);
 
-        if (belongingRepository.existsById(pk)) {
-            throw new RuntimeException("Usuário já possui esse jogo");
+        // 2. Lógica para listas baseadas em Gênero:
+        String genre = game.getGenre().toLowerCase();
+
+        if (genre.contains("adventure") || genre.contains("aventura")) {
+            saveToSpecificList(user, game, 1L); // ID 1 = Aventura e RPG
+        } 
+        
+        if (genre.contains("rpg")) {
+            saveToSpecificList(user, game, 1L); // Também cai na lista 1 kk (Aventura e RPG)
         }
 
-        // Pega próxima posição
-        Long count = belongingRepository.countByUserAndList(user.getId(), listId);
-        Integer position = count.intValue();
+        if (genre.contains("plataforma") || genre.contains("platform")) {
+            saveToSpecificList(user, game, 2L); // ID 2 = Jogos de plataforma
+        }
+    }
 
-        Belonging belonging = new Belonging();
-        belonging.setId(pk);
-        belonging.setPosition(position);
+    private void saveToSpecificList(User user, Game game, Long listId) {
+        GameList list = gameListRepository.findById(listId).orElseThrow(() -> new RuntimeException("Lista " + listId + " não encontrada"));
 
-        belongingRepository.save(belonging);
+        BelongingPK pk = new BelongingPK(game, list, user);
+
+        // Verifica se já existe a relação para não duplicar
+        if (!belongingRepository.existsById(pk)) {
+            Long count = belongingRepository.countByUserAndList(user.getId(), listId);
+        
+            Belonging belonging = new Belonging();
+            belonging.setId(pk);
+            belonging.setPosition(count.intValue());
+
+            belongingRepository.save(belonging);
+        }
     }
 
 }
