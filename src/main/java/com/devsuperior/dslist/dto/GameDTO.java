@@ -18,6 +18,7 @@ public class GameDTO {
     private String imgUrl;
     private String shortDescription;
     private String longDescription;
+    private Long rawgId;
 
     public GameDTO() {
     }
@@ -126,5 +127,13 @@ public class GameDTO {
 
     public void setLongDescription(String longDescription) {
         this.longDescription = longDescription;
+    }
+
+    public Long getRawgId() {
+        return rawgId;
+    }
+
+    public void setRawgId(Long rawgId) {
+        this.rawgId = rawgId;
     }
 }

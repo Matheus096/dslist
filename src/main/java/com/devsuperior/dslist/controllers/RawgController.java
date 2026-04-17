@@ -1,6 +1,7 @@
 package com.devsuperior.dslist.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,5 +36,11 @@ public class RawgController {
     @GetMapping("/games/{id}/screenshots/meu_bd")
     public List<GameScreenshotsRawgDTO> getScreenshotsMeuBd(@PathVariable Long id) {
         return rawgService.getScreenshotsMeuBd(id);
+    }
+
+    @GetMapping("/games/{id}/reviews")
+    public List<Map<String, Object>> getReviews(@PathVariable Long id) {
+        // Agora esse Controller recebe a lista do service e a retorna como JSON para o Angular
+        return rawgService.getGameReviews(id);
     }
 }

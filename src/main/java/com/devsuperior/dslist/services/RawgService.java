@@ -73,6 +73,17 @@ public class RawgService {
         return screenshots;
     }
 
+    public List<Map<String, Object>> getGameReviews(Long gameId) {
+        String url = apiUrl + "/games/" + gameId + "/reviews?key=" + apiKey;
+
+        Map response = restTemplate.getForObject(url, Map.class);
+
+        // lista de comentarios, cada comentário é um Map com as informações do comentário, como nome do usuário, o comentário, a nota, etc
+        List<Map<String, Object>> results = (List<Map<String, Object>>) response.get("results");
+
+        return results; 
+    }
+
     public List<GameScreenshotsRawgDTO> getScreenshotsMeuBd(Long gameId) {
 
         List<GameScreenshotsRawg> screenshots = screenshotRepository.findByGameId(gameId);

@@ -53,4 +53,7 @@ public class Game {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
+
+    @Column(name = "rawg_id", unique = true)
+    private Long rawgId;
 }
