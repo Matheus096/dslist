@@ -42,7 +42,7 @@ INSERT INTO tb_game (title, price, score, game_year, genre, platforms, img_url, 
 
 
 -- Inserindo o usuario 'Matheus' para testes: --
-INSERT INTO tb_user (username, password, role) VALUES ('Matheus', '$2a$12$yEbCxQsFUyXIWaot5lqYd.WSZEYovWdeYNOLqiOzKIgTylXiuh1Zq', 'ADMIN'); -- senha: 123456, mas criptografada --
+INSERT INTO tb_user (username, password, email, role) VALUES ('Matheus', '$2a$12$yEbCxQsFUyXIWaot5lqYd.WSZEYovWdeYNOLqiOzKIgTylXiuh1Zq', 'matheuslfdd098@gmail.com', 'ADMIN'); -- senha: 123456, mas criptografada --
 
 -- Inserindo dados na tabela de pertencimento (belonging): -- 
 
