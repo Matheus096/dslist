@@ -28,6 +28,7 @@ public class AuthUserService {
     public String register(UserDTO request) {
         User user = new User();
         user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
 
@@ -37,7 +38,7 @@ public class AuthUserService {
     public AuthResponseUserDTO login(UserDTO request) {
         Authentication authentication = authManager.authenticate(
             new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
+                request.getEmail(),
                 request.getPassword()
             )
         );
@@ -61,9 +62,9 @@ public class AuthUserService {
             throw new RuntimeException("Usuário não autenticado");
         }
 
-        String username = authentication.getName();
+        String email = authentication.getName();
 
-        return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
     // Método para pegar o usuário atual logado (DTO)
