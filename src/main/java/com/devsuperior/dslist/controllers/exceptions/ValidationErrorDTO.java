@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ValidationError {
+public class ValidationErrorDTO {
     private String field;
     private String message;
 }
