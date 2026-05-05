@@ -7,6 +7,7 @@ import com.devsuperior.dslist.dto.AuthResponseUserDTO;
 import com.devsuperior.dslist.dto.UserDTO;
 import com.devsuperior.dslist.services.AuthUserService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -17,7 +18,7 @@ public class AuthUserController {
     private final AuthUserService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserDTO request) {
+    public ResponseEntity<String> register(@Valid @RequestBody UserDTO request) {
         String message = authService.register(request);
         return ResponseEntity.ok(message);
     }
