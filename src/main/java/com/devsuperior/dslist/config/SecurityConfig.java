@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -15,8 +17,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.devsuperior.dslist.security.CustomUserDetails;
 import com.devsuperior.dslist.security.CustomUserDetailsService;
 import com.devsuperior.dslist.security.jwt.JwtFilter;
+import com.devsuperior.dslist.security.jwt.JwtUtil;
+import com.devsuperior.dslist.services.CustomOAuth2UserService;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -30,6 +35,8 @@ public class SecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;
     private final JwtFilter jwtFilter;
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final JwtUtil jwtUtil;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -55,7 +62,31 @@ public class SecurityConfig {
             // Desativa o formulário padrão
             .formLogin(form -> form.disable())
             // Desativa o popup básico
-            .httpBasic(basic -> basic.disable());
+            .httpBasic(basic -> basic.disable())
+            // Define o gerenciador de autenticação oauth2 do Google, que no caso é a classe CustomOAuth2UserService
+            .oauth2Login(oauth2 -> oauth2
+                .userInfoEndpoint(userInfo -> userInfo
+                    .userService(customOAuth2UserService)
+                )
+
+                .successHandler((request, response, authentication) -> {
+
+                    // Pegado o usuário que o Spring acabou de autenticar/logar
+                    DefaultOAuth2User principal = (DefaultOAuth2User) authentication.getPrincipal();
+                    String email = principal.getAttribute("email");
+
+                    // Log dos dados do Google só pra eu ver como vem hehehe
+                    String name = principal.getAttribute("name");
+                    String password = principal.getAttribute("password");
+                    System.out.println("NAME: " + name + ", PASSWORD: " + password + ", EMAIL: " + email);
+
+                    CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(email);
+                    String token = jwtUtil.generateToken(userDetails); 
+
+                    // Redireciona para o Angular passando o token na URL
+                    response.sendRedirect("http://localhost:4200/home?token=" + token);
+                })
+            );
 
             // Aqui é adicionado o filtro de JWT antes do filtro padrão de autenticação
             http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
