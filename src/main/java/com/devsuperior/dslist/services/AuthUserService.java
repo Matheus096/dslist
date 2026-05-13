@@ -46,7 +46,10 @@ public class AuthUserService {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         String token = jwtUtil.generateToken(userDetails);
 
-        // Retorna o DTO de resposta com token e username
+        // Log só pra mim ver o username sendo o email
+        System.out.println("TOKEN: " + token + ", USERNAME: " + userDetails.getUsername());
+
+        // Retorna o DTO de resposta com token e username (email)
         return new AuthResponseUserDTO(token, userDetails.getUsername());
     }
 
