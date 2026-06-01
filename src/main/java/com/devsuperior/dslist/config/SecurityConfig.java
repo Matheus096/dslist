@@ -78,7 +78,7 @@ public class SecurityConfig {
                     // Log dos dados do Google só pra eu ver como vem hehehe
                     String name = principal.getAttribute("name");
                     String password = principal.getAttribute("password");
-                    System.out.println("NAME: " + name + ", PASSWORD: " + password + ", EMAIL: " + email);
+                    // System.out.println("NAME: " + name + ", PASSWORD: " + password + ", EMAIL: " + email);
 
                     CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(email);
                     String token = jwtUtil.generateToken(userDetails); 
