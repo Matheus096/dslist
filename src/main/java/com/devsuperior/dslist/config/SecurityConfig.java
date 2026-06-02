@@ -39,7 +39,9 @@ public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
     private final JwtUtil jwtUtil;
 
-    // Injeta a URL da Vercel em produção ou usa o localhost se estiver rodando no seu PC
+    // Torna redirecionamento do oauth2 e cors dinamicos com frontendUrl, que é lida da variável de ambiente CORS_ORIGINS (definida em produção ou localmente), mas como localmente a variável não está definida, o valor padrão é http://localhost:4200, ou seja, o Angular. Assim, o mesmo código funciona tanto em produção (Vercel) quanto localmente (Angular)
+
+    // Injeta a URL da Vercel em produção ou usa o localhost se estiver rodando no PC localmente
     @Value("${CORS_ORIGINS:http://localhost:4200}")
     private String frontendUrl;
 
