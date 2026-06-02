@@ -16,6 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.beans.factory.annotation.Value; // Adicionado para ler a variável de ambiente
 
 import com.devsuperior.dslist.security.CustomUserDetails;
 import com.devsuperior.dslist.security.CustomUserDetailsService;
@@ -37,6 +38,10 @@ public class SecurityConfig {
     private final JwtFilter jwtFilter;
     private final CustomOAuth2UserService customOAuth2UserService;
     private final JwtUtil jwtUtil;
+
+    // Injeta a URL da Vercel em produção ou usa o localhost se estiver rodando no seu PC
+    @Value("${CORS_ORIGINS:http://localhost:4200}")
+    private String frontendUrl;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -83,8 +88,8 @@ public class SecurityConfig {
                     CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(email);
                     String token = jwtUtil.generateToken(userDetails); 
 
-                    // Redireciona para o Angular passando o token na URL
-                    response.sendRedirect("http://localhost:4200/home?token=" + token);
+                    // Redireciona dinamicamente para o front-end ativo (Vercel ou Localhost/Angular) passando o token na URL
+                    response.sendRedirect(frontendUrl + "/home?token=" + token);
                 })
             );
 
@@ -110,7 +115,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedOrigins(List.of(frontendUrl)); // Permite/libera apenas as URL do front-end (Vercel ou Localhost)
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
